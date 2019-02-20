@@ -1,7 +1,10 @@
 package com.zxl.demo.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zxl.demo.common.BaseController;
+import com.zxl.demo.entity.User;
 import com.zxl.demo.mapper.UserMapper;
 import com.zxl.demo.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ public class UserController extends BaseController {
 
     @Autowired
     UserMapper userMapper;
+
     @Autowired
     IUserService userService;
 
@@ -34,7 +38,9 @@ public class UserController extends BaseController {
 
     @GetMapping("/page")
     public Object page() {
-        return userService.list();
+        Page<User> userPage = new Page<>(0, 10);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        return userService.page(userPage, queryWrapper);
     }
 
 

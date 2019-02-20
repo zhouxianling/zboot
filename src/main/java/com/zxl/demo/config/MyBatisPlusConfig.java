@@ -14,7 +14,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @Configuration
 @MapperScan("com.zxl.demo.mapper")
-public class MyBatisPlusConfiguration {
+public class MyBatisPlusConfig {
     @Bean
     public ISqlInjector sqlInjector() {
         return new LogicSqlInjector();

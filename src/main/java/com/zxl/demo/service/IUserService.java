@@ -1,15 +1,11 @@
 package com.zxl.demo.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zxl.demo.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import javafx.scene.control.Pagination;
-
-import java.util.List;
+import com.zxl.demo.entity.User;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author zxl

@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * MyBatis-Plus 代码生成器
+ */
 public class CodeGenerator {
 
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sbm_table?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC";
