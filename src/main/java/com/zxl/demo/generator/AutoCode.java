@@ -17,11 +17,12 @@ import java.util.Scanner;
 /**
  * MyBatis-Plus 代码生成器
  */
-public class CodeGenerator {
+public class AutoCode {
 
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sbm_table?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "root";
+    private static final String[] SUPER_ENTITY_COLUMNS = {"id", "create_time", "update_time", "del_flag"};
 
 
     /**
@@ -125,7 +126,7 @@ public class CodeGenerator {
         strategy.setSuperControllerClass("com.zxl.demo.common.BaseController");
         strategy.setInclude(scanner());
 
-        strategy.setSuperEntityColumns("id");
+        strategy.setSuperEntityColumns(SUPER_ENTITY_COLUMNS);
 
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");

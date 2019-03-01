@@ -1,7 +1,6 @@
 server:
   port: 8085
 
-
 spring:
   datasource:
     name: mysql_test
@@ -33,16 +32,24 @@ spring:
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
 
-#打印sql
-#logging:
-#  level:
-#    com.zxl.demo.mapper: DEBUG
+  #swagger的相关配置
+  swagger:
+    # 扫描的包路径,默认扫描所有
+    base-package: com.zxl.demo.controller
+    # 默认为 true
+    enabled: true
+    description: 这是一个很牛逼的接口管理
+    contact:
+      name: xianLing.zhou
+      email: 1079112877@qq.com
+    version: v1.0.0
+
 
 #逻辑删除
 mybatis-plus:
   global-config:
     db-config:
-      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
-      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+      logic-delete-value: 1 # 删除
+      logic-not-delete-value: 0 # 正常
 
 

@@ -20,7 +20,7 @@ public class MyBatisPlusConfig {
         return new LogicSqlInjector();
     }
 
-
+    
     /**
      * 分页插件
      */

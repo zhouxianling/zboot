@@ -1,41 +1,36 @@
 package com.zxl.demo.entity;
 
 import com.zxl.demo.common.BaseEntity;
-
-import java.time.LocalDateTime;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- *
+ * 部门管理
  * </p>
  *
  * @author zxl
- * @since 2019-02-14
+ * @since 2019-03-01
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class User extends BaseEntity {
+public class SysDept extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 姓名
+     * 部门名称
      */
     private String name;
 
     /**
-     * 年龄
+     * 排序
      */
-    private Integer age;
+    private Integer sort;
 
-    /**
-     * 邮箱
-     */
-    private String email;
+    private Integer parentId;
+
 
 }

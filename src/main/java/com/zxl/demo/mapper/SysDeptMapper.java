@@ -1,21 +1,22 @@
 package com.zxl.demo.mapper;
 
+import com.zxl.demo.dto.UserDTO;
+import com.zxl.demo.entity.SysDept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zxl.demo.entity.User;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 /**
  * <p>
- * Mapper 接口
+ * 部门管理 Mapper 接口
  * </p>
  *
  * @author zxl
- * @since 2019-02-14
+ * @since 2019-03-01
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface SysDeptMapper extends BaseMapper<SysDept> {
 
-    @Select("SELECT * FROM `user`")
-    List<User> getUserList();
+
+
 }

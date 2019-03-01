@@ -76,6 +76,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!--Swagger在线调试-->
+        <dependency>
+            <groupId>com.battcn</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>1.4.5-RELEASE</version>
+        </dependency>
+
 
     </dependencies>
 
