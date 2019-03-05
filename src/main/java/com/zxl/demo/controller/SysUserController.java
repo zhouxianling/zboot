@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zxl.demo.dto.UserDTO;
 import com.zxl.demo.entity.SysUser;
+import com.zxl.demo.exception.CustomException;
 import com.zxl.demo.service.ISysUserService;
+import com.zxl.demo.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.zxl.demo.common.BaseController;
 
+import static com.alibaba.druid.sql.visitor.SQLEvalVisitorUtils.like;
+
 /**
  * <p>
  * 用户表 前端控制器
@@ -27,7 +31,7 @@ import com.zxl.demo.common.BaseController;
  * @since 2019-03-01
  */
 
-@Api(tags = "1.0", value = "用户管理", description = "用户管理")
+@Api(tags = "1", value = "用户管理", description = "用户管理")
 @RestController
 @RequestMapping("api/sysUser")
 public class SysUserController extends BaseController {
@@ -36,16 +40,24 @@ public class SysUserController extends BaseController {
     ISysUserService sysUserService;
 
 
-    @ApiOperation("列表")
+    @ApiOperation("分页")
     @GetMapping("/page")
-    @ApiImplicitParams({
-            @ApiImplicitParam(value = "关键字查询", name = "keyword")
-    })
-    public Object page(@RequestParam(defaultValue = "0") int page
+    public R page(@RequestParam(defaultValue = "0") int page
             , @RequestParam(defaultValue = "10") int size
             , @RequestParam(defaultValue = "") String keyword) {
-        return sysUserService.page(new Page<>(page, size), new QueryWrapper<SysUser>().like("username", keyword));
+        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("username", keyword);
+        return new R<>(sysUserService.page(new Page<>(page, size), queryWrapper));
     }
 
+    @ApiOperation("测试")
+    @GetMapping("/test")
+    public R test(@RequestParam int test) {
+        if (test < 0) {
+            throw new CustomException(400, "这个怕是不能小于0");
+        }
+        return new R<>(true);
+
+    }
 
 }

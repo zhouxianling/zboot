@@ -44,6 +44,37 @@ spring:
       email: 1079112877@qq.com
     version: v1.0.0
 
+  #  redis相关配置
+  redis:
+    host: localhost
+    port: 6379
+    #根据需要
+    password:
+    # 连接超时时间（毫秒）
+    timeout: 10000
+    # Redis默认情况下有16个分片，这里配置具体使用的分片，默认是0
+    database: 0
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-wait: -1
+        # 连接池中的最大空闲连接 默认 8
+        max-idle: 8
+        # 连接池中的最小空闲连接 默认 0
+        min-idle: 0
+
+  #  上传文件配置文件
+  thymeleaf:
+    cache: false      # 禁用 thymeleaf 缓存
+
+  servlet:   # 是否支持批量上传   (默认值 true)
+    multipart:
+      enabled: true
+      max-file-size: 10485760
+      max-request-size: 10485760
+
 
 #逻辑删除
 mybatis-plus:
@@ -51,5 +82,3 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1 # 删除
       logic-not-delete-value: 0 # 正常
-
-

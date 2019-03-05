@@ -1,15 +1,10 @@
 package com.zxl.demo.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zxl.demo.dto.UserDTO;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zxl.demo.entity.SysUser;
 import com.zxl.demo.mapper.SysUserMapper;
 import com.zxl.demo.service.ISysUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * <p>

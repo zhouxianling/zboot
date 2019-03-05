@@ -31,6 +31,4 @@ public class SysDeptRelation extends BaseEntity {
     private Integer descendant;
 
 
-
-
 }

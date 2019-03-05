@@ -16,6 +16,11 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <mybatis.plus.version>3.0.7.1</mybatis.plus.version>
+        <mybatis.plus.generator.version>3.0.7.1</mybatis.plus.generator.version>
+        <freemarker.version>2.3.28</freemarker.version>
+        <alibaba.druid.version>1.1.9</alibaba.druid.version>
+        <swagger.version>1.4.5-RELEASE</swagger.version>
     </properties>
 
     <dependencies>
@@ -42,18 +47,20 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0.7.1</version>
+            <version>${mybatis.plus.version}</version>
+
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.0.7.1</version>
+            <version>${mybatis.plus.generator.version}</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.28</version>
+            <version>${freemarker.version}</version>
         </dependency>
 
 
@@ -67,7 +74,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.9</version>
+            <version>${alibaba.druid.version}</version>
         </dependency>
 
         <dependency>
@@ -80,7 +87,25 @@
         <dependency>
             <groupId>com.battcn</groupId>
             <artifactId>swagger-spring-boot-starter</artifactId>
-            <version>1.4.5-RELEASE</version>
+            <version>${swagger.version}</version>
+        </dependency>
+
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+
+        <!--文件上传-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
 

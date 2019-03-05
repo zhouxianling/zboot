@@ -16,5 +16,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysDeptRelationServiceImpl extends ServiceImpl<SysDeptRelationMapper, SysDeptRelation> implements ISysDeptRelationService {
-
+    
 }
