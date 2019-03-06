@@ -5,31 +5,25 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-
 /**
  * <p>
- * 部门关系表
+ * 系统角色表
  * </p>
  *
  * @author zxl
- * @since 2019-03-01
+ * @since 2019-03-06
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class SysDeptRelation implements Serializable {
+public class SysRole extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 祖先节点
-     */
-    private Integer ancestor;
+    private String roleName;
 
-    /**
-     * 后代节点
-     */
-    private Integer descendant;
+    private String roleCode;
 
+    private String roleDesc;
 
 }

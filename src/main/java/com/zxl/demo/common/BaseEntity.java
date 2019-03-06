@@ -15,11 +15,11 @@ public class BaseEntity implements Serializable {
 
     @ApiModelProperty("主键ID")
     @TableId(value = "id", type = IdType.AUTO)
-    public Long id;
+    public Integer id;
 
     @ApiModelProperty("创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    public Date createTime = new Date();
+    public Date createTime;
 
     @ApiModelProperty("更新时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

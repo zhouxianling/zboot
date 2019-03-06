@@ -75,10 +75,12 @@ spring:
       max-file-size: 10485760
       max-request-size: 10485760
 
-
 #逻辑删除
 mybatis-plus:
   global-config:
     db-config:
       logic-delete-value: 1 # 删除
       logic-not-delete-value: 0 # 正常
+
+#上传文件地址
+file-dir: /E:/file/
