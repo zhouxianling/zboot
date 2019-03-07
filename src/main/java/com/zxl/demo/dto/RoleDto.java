@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 public class RoleDto implements Serializable {
 
-    public Long id;
+    public Integer id;
 
     private String roleName;
 

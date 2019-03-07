@@ -22,6 +22,25 @@ import java.util.List;
 public interface ISysUserService extends IService<SysUser> {
 
     /**
+     * 登录
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    R login(String username, String password);
+
+
+    /**
+     * 注册
+     *
+     * @param userDto
+     * @return
+     */
+    R register(UserDto userDto);
+
+
+    /**
      * 通过用户名查找用户
      *
      * @param username 用户名
@@ -72,19 +91,12 @@ public interface ISysUserService extends IService<SysUser> {
      */
     List<SysUser> listAncestorUsers(String username);
 
-    /**
-     * 保存用户信息
-     *
-     * @param userDto DTO 对象
-     * @return success/fail
-     */
-    Boolean saveUser(UserDto userDto);
 
     /**
      * 通过用户ID 查询他的菜单
      *
      * @param id 用户ID
-     * @return  菜单集
+     * @return 菜单集
      */
     List<MenuDto> findMenuByUserId(Integer id);
 

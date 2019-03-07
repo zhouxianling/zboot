@@ -4,6 +4,9 @@ import com.zxl.demo.dto.RoleDto;
 import com.zxl.demo.entity.SysRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zxl.demo.common.utils.R;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -18,4 +21,6 @@ public interface ISysRoleService extends IService<SysRole> {
     R saveRole(RoleDto roleDto);
 
     R updateRole(RoleDto roleDto);
+
+    List<RoleDto> findRoleByUserId(Integer userId);
 }

@@ -9,6 +9,8 @@ import com.zxl.demo.common.utils.R;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 系统角色表 服务实现类
@@ -33,5 +35,10 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(roleDto, sysRole);
         return new R<>(this.updateById(sysRole));
+    }
+
+    @Override
+    public List<RoleDto> findRoleByUserId(Integer userId) {
+        return baseMapper.findRoleByUserId(userId);
     }
 }

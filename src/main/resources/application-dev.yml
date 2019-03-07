@@ -43,6 +43,13 @@ spring:
       name: xianLing.zhou
       email: 1079112877@qq.com
     version: v1.0.0
+    #全局参数,比如Token之类的验证信息可以全局话配置
+    global-operation-parameters:
+    - description: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1NTU1NzUzMjEsInVzZXJuYW1lIjoienhsIn0.56K9pbg-TaxkPBlSoNxMLN1sMdvhok7RJ4Rk1_K9SHJkI4Ma7j026KLkTMDAvKS6qCt2Yips9AucCt5JAv7gTg'
+      modelRef: 'string'
+      name: 'Authorization'
+      parameter-type: 'header'
+      required: true
 
   #  redis相关配置
   redis:
@@ -81,6 +88,7 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1 # 删除
       logic-not-delete-value: 0 # 正常
+
 
 #上传文件地址
 file-dir: /E:/file/

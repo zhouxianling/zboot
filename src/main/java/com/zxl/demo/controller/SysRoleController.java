@@ -54,6 +54,12 @@ public class SysRoleController extends BaseController {
         return new R<>(sysRoleService.getById(id));
     }
 
+    @ApiOperation(value = "通过用户获取所属的角色")
+    @GetMapping("/findRoleByUserId/{userId}")
+    public R findRoleByUserId(@PathVariable Integer userId) {
+        return new R<>(sysRoleService.findRoleByUserId(userId));
+    }
+
 
     @ApiOperation(value = "删除菜单")
     @DeleteMapping("/{id}")
