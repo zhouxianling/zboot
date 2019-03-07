@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zxl.demo.dto.RoleDto;
 import com.zxl.demo.entity.SysRole;
-import com.zxl.demo.common.exception.CustomException;
+import com.zxl.demo.service.ISysRoleMenuService;
 import com.zxl.demo.service.ISysRoleService;
 import com.zxl.demo.common.utils.R;
 import io.swagger.annotations.Api;
@@ -31,6 +31,8 @@ import com.zxl.demo.common.BaseController;
 public class SysRoleController extends BaseController {
 
     private final ISysRoleService sysRoleService;
+    private final ISysRoleMenuService sysRoleMenuService;
+
 
     @ApiOperation(value = "新增")
     @PostMapping
@@ -69,6 +71,20 @@ public class SysRoleController extends BaseController {
             queryWrapper.like("role_name", "%" + roleName + "%");
         }
         return new R<>(sysRoleService.page(new Page<>(page, size), queryWrapper));
+    }
+
+    /**
+     * 更新角色菜单
+     *
+     * @param roleId  角色ID
+     * @param menuIds 菜单ID拼成的字符串，每个id之间根据逗号分隔
+     * @return success、false
+     */
+    @ApiOperation("更新角色菜单")
+    @PutMapping("/menu")
+    public R saveRoleMenus(Integer roleId, @RequestParam(value = "menuIds", required = false) String menuIds) {
+        SysRole sysRole = sysRoleService.getById(roleId);
+        return new R<>(sysRoleMenuService.saveRoleMenus(sysRole.getRoleCode(), roleId, menuIds));
     }
 
 

@@ -3,11 +3,12 @@ package com.zxl.demo.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zxl.demo.dto.MenuDto;
 import com.zxl.demo.dto.UserDto;
 import com.zxl.demo.dto.UserInfo;
 import com.zxl.demo.entity.SysUser;
 import com.zxl.demo.mapper.SysUserMapper;
-import com.zxl.demo.service.ISysUserService;
+import com.zxl.demo.service.*;
 import com.zxl.demo.common.utils.R;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,13 +28,18 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
-   /* private final SysMenuService sysMenuService;
-    private final SysRoleService sysRoleService;
-    private final SysDeptService sysDeptService;
-    private final SysUserRoleService sysUserRoleService;
-    private final SysDeptRelationService sysDeptRelationService;
-*/
 
+    private final ISysMenuService sysMenuService;
+    private final ISysRoleService sysRoleService;
+    private final ISysDeptService sysDeptService;
+    private final ISysUserRoleService sysUserRoleService;
+    private final ISysDeptRelationService sysDeptRelationService;
+
+
+    @Override
+    public UserDto findByUsername(String username) {
+        return this.baseMapper.findByUsername(username);
+    }
 
     @Override
     public UserInfo findUserInfo(SysUser sysUser) {
@@ -63,5 +69,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public Boolean saveUser(UserDto userDto) {
         return null;
+    }
+
+    @Override
+    public List<MenuDto> findMenuByUserId(Integer id) {
+        return this.baseMapper.findMenuByUserId(id);
     }
 }

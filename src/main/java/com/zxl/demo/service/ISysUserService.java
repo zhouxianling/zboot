@@ -3,6 +3,7 @@ package com.zxl.demo.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zxl.demo.dto.MenuDto;
 import com.zxl.demo.dto.UserDto;
 import com.zxl.demo.dto.UserInfo;
 import com.zxl.demo.entity.SysUser;
@@ -19,6 +20,14 @@ import java.util.List;
  * @since 2019-03-01
  */
 public interface ISysUserService extends IService<SysUser> {
+
+    /**
+     * 通过用户名查找用户
+     *
+     * @param username 用户名
+     * @return 用户信息
+     */
+    UserDto findByUsername(String username);
 
     /**
      * 查询用户信息
@@ -55,7 +64,6 @@ public interface ISysUserService extends IService<SysUser> {
     Boolean updateUser(UserDto userDto);
 
 
-
     /**
      * 查询上级部门的用户信息
      *
@@ -72,5 +80,12 @@ public interface ISysUserService extends IService<SysUser> {
      */
     Boolean saveUser(UserDto userDto);
 
+    /**
+     * 通过用户ID 查询他的菜单
+     *
+     * @param id 用户ID
+     * @return  菜单集
+     */
+    List<MenuDto> findMenuByUserId(Integer id);
 
 }

@@ -1,10 +1,16 @@
 package com.zxl.demo.service.impl;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zxl.demo.entity.SysRoleMenu;
 import com.zxl.demo.mapper.SysRoleMenuMapper;
 import com.zxl.demo.service.ISysRoleMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -17,4 +23,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements ISysRoleMenuService {
 
+    @Override
+    public Boolean saveRoleMenus(String role, Integer roleId, String menuIds) {
+        this.remove(Wrappers.<SysRoleMenu>query().lambda()
+                .eq(SysRoleMenu::getRoleId, roleId));
+
+        if (StrUtil.isBlank(menuIds)) {
+            return Boolean.TRUE;
+        }
+        List<SysRoleMenu> roleMenuList = Arrays
+                .stream(menuIds.split(","))
+                .map(menuId -> {
+                    SysRoleMenu roleMenu = new SysRoleMenu();
+                    roleMenu.setRoleId(roleId);
+                    roleMenu.setMenuId(Integer.valueOf(menuId));
+                    return roleMenu;
+                }).collect(Collectors.toList());
+
+        return this.saveBatch(roleMenuList);
+    }
 }
