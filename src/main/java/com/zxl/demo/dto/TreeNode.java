@@ -14,8 +14,8 @@ import java.util.List;
  */
 @Data
 public class TreeNode {
-    protected long id;
-    protected long parentId;
+    protected int id;
+    protected int parentId;
 
     protected List<TreeNode> children = new ArrayList<TreeNode>();
 

@@ -7,27 +7,27 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 部门关系表
+ * 用户角色表
  * </p>
  *
  * @author zxl
- * @since 2019-03-01
+ * @since 2019-03-07
  */
 @Data
 @Accessors(chain = true)
-public class SysDeptRelation implements Serializable {
+public class SysUserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 祖先节点
+     * 用户ID
      */
-    private Integer ancestor;
+    private Integer userId;
 
     /**
-     * 后代节点
+     * 角色ID
      */
-    private Integer descendant;
+    private Integer roleId;
 
 
 }

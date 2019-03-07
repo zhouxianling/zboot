@@ -1,7 +1,9 @@
 package com.zxl.demo.service;
 
+import com.zxl.demo.dto.RoleDto;
 import com.zxl.demo.entity.SysRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zxl.demo.common.utils.R;
 
 /**
  * <p>
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISysRoleService extends IService<SysRole> {
 
+    R saveRole(RoleDto roleDto);
+
+    R updateRole(RoleDto roleDto);
 }

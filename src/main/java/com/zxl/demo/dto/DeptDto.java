@@ -12,8 +12,8 @@ import java.io.Serializable;
  * @since 2019/3/6
  */
 @Data
-public class DeptDTO implements Serializable {
-    public Long id;
+public class DeptDto implements Serializable {
+    public Integer id;
     private String name;
     private Integer sort;
     private Integer parentId;

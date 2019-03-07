@@ -1,4 +1,4 @@
-package com.zxl.demo.exception;
+package com.zxl.demo.common.exception;
 
 /**
  * <p>

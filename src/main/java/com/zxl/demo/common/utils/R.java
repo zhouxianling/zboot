@@ -1,6 +1,6 @@
-package com.zxl.demo.utils;
+package com.zxl.demo.common.utils;
 
-import com.zxl.demo.constant.CommonConstants;
+import com.zxl.demo.common.CommonConstants;
 import lombok.*;
 import lombok.experimental.Accessors;
 

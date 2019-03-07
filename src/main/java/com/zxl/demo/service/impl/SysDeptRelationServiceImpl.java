@@ -33,13 +33,17 @@ public class SysDeptRelationServiceImpl extends ServiceImpl<SysDeptRelationMappe
         SysDeptRelation condition = new SysDeptRelation();
         condition.setDescendant(sysDept.getParentId());
 
-        QueryWrapper<SysDeptRelation> qw = new QueryWrapper<>();
-        qw.eq("ancestor",sysDept.getParentId());
 
-        List<SysDeptRelation> relations = this.baseMapper.selectList(qw);
+        List<SysDeptRelation> relationList = baseMapper.selectList(Wrappers.<SysDeptRelation>query().lambda()
+                .eq(SysDeptRelation::getDescendant, sysDept.getParentId()))
+                .stream().map(relation -> {
+                    relation.setDescendant(sysDept.getId());
+                    return relation;
+                }).collect(Collectors.toList());
 
-        if (CollUtil.isNotEmpty(relations)) {
-            this.saveBatch(relations);
+
+        if (CollUtil.isNotEmpty(relationList)) {
+            this.saveBatch(relationList);
         }
 
 
@@ -54,10 +58,5 @@ public class SysDeptRelationServiceImpl extends ServiceImpl<SysDeptRelationMappe
     @Override
     public void deleteAllDeptRelation(Integer id) {
         baseMapper.deleteDeptRelationsById(id);
-    }
-
-    @Override
-    public void updateDeptRelation(SysDeptRelation relation) {
-        baseMapper.updateDeptRelations(relation);
     }
 }

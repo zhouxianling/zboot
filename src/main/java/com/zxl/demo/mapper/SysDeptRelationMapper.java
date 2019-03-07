@@ -2,6 +2,8 @@ package com.zxl.demo.mapper;
 
 import com.zxl.demo.entity.SysDeptRelation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -17,12 +19,7 @@ public interface SysDeptRelationMapper extends BaseMapper<SysDeptRelation> {
      *
      * @param id 部门ID
      */
-    void deleteDeptRelationsById(Integer id);
+    @Select("DELETE FROM sys_dept_relation WHERE descendant IN (SELECT temp.descendant FROM (SELECT descendant FROM sys_dept_relation WHERE ancestor = #{id}) temp)")
+    void deleteDeptRelationsById(@Param("id") Integer id);
 
-    /**
-     * 更改部分关系表数据
-     *
-     * @param deptRelation
-     */
-    void updateDeptRelations(SysDeptRelation deptRelation);
 }

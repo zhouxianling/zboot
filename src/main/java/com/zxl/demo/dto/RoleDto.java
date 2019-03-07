@@ -1,8 +1,10 @@
 package com.zxl.demo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -12,7 +14,7 @@ import java.io.Serializable;
  * @since 2019/3/6
  */
 @Data
-public class RoleDTO implements Serializable {
+public class RoleDto implements Serializable {
 
     public Long id;
 
@@ -21,4 +23,8 @@ public class RoleDTO implements Serializable {
     private String roleCode;
 
     private String roleDesc;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    public Date updateTime;
+
 }

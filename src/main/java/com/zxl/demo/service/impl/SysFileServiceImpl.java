@@ -2,10 +2,10 @@ package com.zxl.demo.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zxl.demo.entity.SysFile;
-import com.zxl.demo.exception.CustomException;
+import com.zxl.demo.common.exception.CustomException;
 import com.zxl.demo.mapper.SysFileMapper;
 import com.zxl.demo.service.ISysFileService;
-import com.zxl.demo.utils.FileTool;
+import com.zxl.demo.common.utils.FileTool;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

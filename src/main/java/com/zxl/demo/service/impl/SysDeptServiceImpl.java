@@ -1,17 +1,21 @@
 package com.zxl.demo.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zxl.demo.dto.DeptDTO;
+import com.zxl.demo.dto.DeptDto;
 import com.zxl.demo.dto.DeptTree;
 import com.zxl.demo.entity.SysDept;
 import com.zxl.demo.entity.SysDeptRelation;
 import com.zxl.demo.mapper.SysDeptMapper;
 import com.zxl.demo.service.ISysDeptRelationService;
 import com.zxl.demo.service.ISysDeptService;
-import com.zxl.demo.utils.TreeUtil;
+import com.zxl.demo.common.utils.R;
+import com.zxl.demo.common.utils.TreeUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -31,34 +35,57 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
 
     private final ISysDeptRelationService sysDeptRelationService;
 
+
     @Override
-    public SysDept insertOrUpdate(DeptDTO deptDTO) {
+    @Transactional(rollbackFor = Exception.class)
+    public R saveDept(DeptDto deptDto) {
         SysDept sysDept = new SysDept();
-        BeanUtils.copyProperties(deptDTO, sysDept);
-        //TODO 更新操作
-        if (sysDept.getId() != null) {
-            sysDept.setUpdateTime(new Date());
-            this.saveOrUpdate(sysDept);
-            //TODO 更新部门关系
-            SysDeptRelation relation = new SysDeptRelation();
-            relation.setAncestor(sysDept.getParentId());
-            relation.setDescendant(sysDept.getId());
-            sysDeptRelationService.updateDeptRelation(relation);
-        } else {
-            sysDept.setCreateTime(new Date());
-            this.saveOrUpdate(sysDept);
-            //TODO 插入部门关系
-            sysDeptRelationService.insertDeptRelation(sysDept);
-        }
-        return sysDept;
+        BeanUtils.copyProperties(deptDto, sysDept);
+        this.save(sysDept);
+
+        //TODO 插入部门关系
+        sysDeptRelationService.insertDeptRelation(sysDept);
+
+        return new R<>(Boolean.TRUE);
     }
 
     @Override
-    public Boolean logicDeleteDeptById(Long id) {
-        SysDept sysDept = this.getById(id);
-        sysDept.setDelFlag(true);
-        this.save(sysDept);
-        return true;
+    public R updateDept(DeptDto deptDto) {
+        SysDept sysDept = new SysDept();
+        BeanUtils.copyProperties(deptDto, sysDept);
+        sysDept.setUpdateTime(new Date());
+        this.updateById(sysDept);
+
+        //TODO 如果父级改变，更新部门关系
+        SysDept oldDept = this.getById(deptDto.getId());
+        if (!oldDept.getParentId().equals(sysDept.getParentId())) {
+            sysDeptRelationService.deleteAllDeptRelation(sysDept.getId());
+            sysDeptRelationService.insertDeptRelation(sysDept);
+        }
+
+        return new R<>(Boolean.TRUE);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean logicDeleteDeptById(Integer id) {
+        //级联删除部门（逻辑删除）
+        List<Integer> idList = sysDeptRelationService
+                .list(Wrappers.<SysDeptRelation>query().lambda()
+                        .eq(SysDeptRelation::getAncestor, id))
+                .stream()
+                .map(SysDeptRelation::getDescendant)
+                .collect(Collectors.toList());
+
+
+        if (CollUtil.isNotEmpty(idList)) {
+            this.removeByIds(idList);
+        }
+
+        //删除部门级联关系
+        sysDeptRelationService.deleteAllDeptRelation(id);
+
+        return Boolean.TRUE;
     }
 
     @Override
@@ -75,11 +102,11 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
     /**
      * 构建部门树
      *
-     * @param depts 部门
+     * @param deptList 部门
      * @return
      */
-    private List<DeptTree> getDeptTree(List<SysDept> depts) {
-        List<DeptTree> treeList = depts.stream()
+    private List<DeptTree> getDeptTree(List<SysDept> deptList) {
+        List<DeptTree> treeList = deptList.stream()
                 .filter(dept -> !dept.getId().equals(dept.getParentId()))
                 .map(dept -> {
                     DeptTree node = new DeptTree();

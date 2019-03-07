@@ -27,10 +27,5 @@ public interface ISysDeptRelationService extends IService<SysDeptRelation> {
      */
     void deleteAllDeptRelation(Integer id);
 
-    /**
-     * 更新部门关系
-     *
-     * @param relation
-     */
-    void updateDeptRelation(SysDeptRelation relation);
+
 }

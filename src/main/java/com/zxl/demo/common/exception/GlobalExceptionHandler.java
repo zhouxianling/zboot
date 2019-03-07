@@ -1,6 +1,5 @@
-package com.zxl.demo.exception;
+package com.zxl.demo.common.exception;
 
-import com.zxl.demo.utils.R;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

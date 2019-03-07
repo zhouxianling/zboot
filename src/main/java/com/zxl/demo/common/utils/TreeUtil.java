@@ -1,6 +1,8 @@
-package com.zxl.demo.utils;
+package com.zxl.demo.common.utils;
 
+import com.zxl.demo.dto.MenuTree;
 import com.zxl.demo.dto.TreeNode;
+import com.zxl.demo.entity.SysMenu;
 import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
@@ -74,4 +76,31 @@ public class TreeUtil {
         }
         return treeNode;
     }
+
+    /**
+     * 通过sysMenu创建树形节点
+     *
+     * @param menus
+     * @param root
+     * @return
+     */
+    public List<MenuTree> buildMenuTree(List<SysMenu> menus, int root) {
+        List<MenuTree> trees = new ArrayList<>();
+        MenuTree node;
+        for (SysMenu menu : menus) {
+            node = new MenuTree();
+            node.setId(menu.getId());
+            node.setParentId(menu.getParentId());
+            node.setName(menu.getName());
+            node.setPath(menu.getPath());
+            node.setPermission(menu.getPermission());
+            node.setName(menu.getName());
+            node.setComponent(menu.getComponent());
+            node.setIcon(menu.getIcon());
+            node.setKeepAlive(menu.getKeepAlive());
+            trees.add(node);
+        }
+        return TreeUtil.build(trees, root);
+    }
+
 }

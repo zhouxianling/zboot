@@ -1,11 +1,7 @@
 package com.zxl.demo.mapper;
 
-import com.zxl.demo.dto.UserDTO;
 import com.zxl.demo.entity.SysDept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 /**
  * <p>

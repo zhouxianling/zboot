@@ -1,4 +1,4 @@
-package com.zxl.demo.config;
+package com.zxl.demo.common.config;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
@@ -15,12 +15,15 @@ import java.util.Properties;
 @Configuration
 @MapperScan("com.zxl.demo.mapper")
 public class MyBatisPlusConfig {
+    /**
+     * TODO 逻辑删除 使用mp自带方法删除和查找都会附带逻辑删除功能
+     */
     @Bean
     public ISqlInjector sqlInjector() {
         return new LogicSqlInjector();
     }
 
-    
+
     /**
      * 分页插件
      */

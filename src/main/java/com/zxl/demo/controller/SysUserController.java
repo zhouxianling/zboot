@@ -4,25 +4,19 @@ package com.zxl.demo.controller;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zxl.demo.dto.UserDTO;
 import com.zxl.demo.entity.SysUser;
-import com.zxl.demo.exception.CustomException;
+import com.zxl.demo.common.exception.CustomException;
 import com.zxl.demo.service.ISysUserService;
-import com.zxl.demo.utils.R;
+import com.zxl.demo.common.utils.R;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.zxl.demo.common.BaseController;
-
-import static com.alibaba.druid.sql.visitor.SQLEvalVisitorUtils.like;
 
 /**
  * <p>
@@ -62,5 +56,8 @@ public class SysUserController extends BaseController {
         }
         return new R<>(true);
     }
+
+
+
 
 }

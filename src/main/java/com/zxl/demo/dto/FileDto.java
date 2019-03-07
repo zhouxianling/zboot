@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @since 2019/3/6
  */
 @Data
-public class FileDTO implements Serializable {
+public class FileDto implements Serializable {
 
     /**
      * 新文件名称

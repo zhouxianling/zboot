@@ -1,10 +1,4 @@
-package com.zxl.demo.utils;
-
-import java.io.*;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.util.Calendar;
-import java.util.Locale;
+package com.zxl.demo.common.utils;
 
 
 /**

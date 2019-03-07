@@ -1,9 +1,10 @@
 package com.zxl.demo.service;
 
-import com.zxl.demo.dto.DeptDTO;
+import com.zxl.demo.dto.DeptDto;
 import com.zxl.demo.dto.DeptTree;
 import com.zxl.demo.entity.SysDept;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zxl.demo.common.utils.R;
 
 import java.util.List;
 
@@ -17,13 +18,23 @@ import java.util.List;
  */
 public interface ISysDeptService extends IService<SysDept> {
 
+
     /**
-     * 插入或者更新
+     * 插入
      *
-     * @param deptDTO
+     * @param deptDto
      * @return
      */
-    SysDept insertOrUpdate(DeptDTO deptDTO);
+    R saveDept(DeptDto deptDto);
+
+
+    /**
+     * 更新
+     *
+     * @param deptDto
+     * @return
+     */
+    R updateDept(DeptDto deptDto);
 
     /**
      * 逻辑假删除
@@ -31,7 +42,7 @@ public interface ISysDeptService extends IService<SysDept> {
      * @param id
      * @return
      */
-    Boolean logicDeleteDeptById(Long id);
+    Boolean logicDeleteDeptById(Integer id);
 
 
     /**

@@ -3,7 +3,7 @@ package com.zxl.demo.controller;
 
 import com.zxl.demo.common.BaseController;
 import com.zxl.demo.service.ISysFileService;
-import com.zxl.demo.utils.R;
+import com.zxl.demo.common.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.zxl.demo.config;
+package com.zxl.demo.common.config;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
