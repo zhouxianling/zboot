@@ -50,29 +50,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 
     @Override
-    public R login(String username, String password) {
-        UserDto userDto = this.findByUsername(username);
-        if (userDto == null) {
-            return new R<>(400, "用户不存在.");
-        } else {
-            try {
-                if (PasswordHash.validatePassword(password, userDto.getPassword())) {
-                    String token = JwtUtil.generateToken(username);
-                    userDto.setRoles(sysRoleService.findRoleByUserId(userDto.getId()));
-                    redisTemplate.opsForValue().set(userDto.getUsername(), userDto);
-
-                    return new R<>(token);
-                } else {
-                    return new R<>(400, "参数错误.");
-                }
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                e.printStackTrace();
-            }
-        }
-        return new R<>(400, "登录失败.");
-    }
-
-    @Override
     public R register(UserDto userDto) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(userDto, sysUser);
@@ -125,9 +102,4 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return null;
     }
 
-
-    @Override
-    public List<MenuDto> findMenuByUserId(Integer id) {
-        return this.baseMapper.findMenuByUserId(id);
-    }
 }

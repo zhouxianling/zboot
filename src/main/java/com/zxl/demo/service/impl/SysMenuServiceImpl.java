@@ -3,7 +3,9 @@ package com.zxl.demo.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zxl.demo.common.CommonConstants;
+import com.zxl.demo.common.utils.TreeUtil;
 import com.zxl.demo.dto.MenuDto;
+import com.zxl.demo.dto.MenuTree;
 import com.zxl.demo.entity.SysMenu;
 import com.zxl.demo.entity.SysRoleMenu;
 import com.zxl.demo.mapper.SysMenuMapper;
@@ -43,6 +45,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         SysMenu sysMenu = new SysMenu();
         BeanUtils.copyProperties(menuDto, sysMenu);
         return new R<>(this.updateById(sysMenu));
+    }
+
+    @Override
+    public List<MenuTree> findMenuByUserId(Integer userId) {
+        return TreeUtil.buildMenuDtoTree(baseMapper.findMenuByUserId(userId), 0);
     }
 
     @Override

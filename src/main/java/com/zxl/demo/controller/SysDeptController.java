@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  * @author zxl
  * @since 2019-03-01
  */
-@Api(tags = "部门", value = "部门管理", description = "部门管理")
+@Api(tags = "1.5", value = "部门管理", description = "部门管理")
 @RestController
 @RequestMapping("api/dept")
 @AllArgsConstructor

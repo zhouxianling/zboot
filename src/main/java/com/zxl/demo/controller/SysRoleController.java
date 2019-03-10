@@ -24,7 +24,7 @@ import com.zxl.demo.common.BaseController;
  * @author zxl
  * @since 2019-03-06
  */
-@Api(tags = "角色", value = "角色管理", description = "角色管理")
+@Api(tags = "1.2", value = "角色管理", description = "角色管理")
 @RestController
 @RequestMapping("api/role")
 @AllArgsConstructor

@@ -22,6 +22,4 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     @Select("SELECT * FROM sys_user WHERE del_flag = 0 AND username = #{username}")
     UserDto findByUsername(@Param("username") String username);
 
-    @Select("SELECT * FROM sys_menu WHERE del_flag =0 AND  id IN (SELECT menu_id FROM sys_role_menu WHERE role_id = (SELECT role_id FROM sys_user_role WHERE user_id = #{id}))")
-    List<MenuDto> findMenuByUserId(@Param("id") Integer integer);
 }

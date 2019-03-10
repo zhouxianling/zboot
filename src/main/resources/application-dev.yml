@@ -49,7 +49,7 @@ spring:
       modelRef: 'string'
       name: 'Authorization'
       parameter-type: 'header'
-      required: true
+      required: false
 
   #  redis相关配置
   redis:

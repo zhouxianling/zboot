@@ -1,12 +1,13 @@
 package com.zxl.demo.common.filter;
 
 import cn.hutool.core.util.StrUtil;
-import com.zxl.demo.common.exception.CustomException;
 import com.zxl.demo.common.utils.JwtUtil;
 import com.zxl.demo.dto.MenuDto;
-import com.zxl.demo.entity.SysMenu;
+import com.zxl.demo.dto.MenuTree;
 import com.zxl.demo.entity.SysUser;
+import com.zxl.demo.service.ISysMenuService;
 import com.zxl.demo.service.ISysUserService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,14 +26,13 @@ import java.util.List;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final PathMatcher pathMatcher = new AntPathMatcher();
 
-    @Autowired
-    private ISysUserService sysUserService;
-
-    @Autowired
-    private RedisTemplate<String, Serializable> redisTemplate;
+    private final ISysUserService sysUserService;
+    private final ISysMenuService sysMenuService;
+    private final RedisTemplate<String, Serializable> redisTemplate;
 
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -52,11 +52,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     redisTemplate.opsForValue().set(username, sysUser);
                 }
                 request = JwtUtil.validateTokenAndAddUserIdToHeader(request, sysUser);
-
-
-                List<MenuDto> menus = sysUserService.findMenuByUserId(sysUser.getId());
+                List<MenuTree> menus = sysMenuService.findMenuByUserId(sysUser.getId());
                 boolean isAuth = false;
-                for (MenuDto menu : menus) {
+                for (MenuTree menu : menus) {
                     if (StrUtil.isNotBlank(menu.getPermission()) && isAuthUrl(menu.getPermission(), request)) {
                         isAuth = true;
                     }

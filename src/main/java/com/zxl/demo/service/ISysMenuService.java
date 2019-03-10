@@ -1,9 +1,12 @@
 package com.zxl.demo.service;
 
 import com.zxl.demo.dto.MenuDto;
+import com.zxl.demo.dto.MenuTree;
 import com.zxl.demo.entity.SysMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zxl.demo.common.utils.R;
+
+import java.util.List;
 
 /**
  * <p>
@@ -38,4 +41,13 @@ public interface ISysMenuService extends IService<SysMenu> {
      * @return
      */
     R updateMenu(MenuDto menuDto);
+
+
+    /**
+     * 通过用户ID 查询他的菜单
+     *
+     * @param userId 用户ID
+     * @return 菜单集
+     */
+    List<MenuTree> findMenuByUserId(Integer userId);
 }

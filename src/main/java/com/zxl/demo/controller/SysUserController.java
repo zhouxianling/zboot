@@ -2,26 +2,18 @@ package com.zxl.demo.controller;
 
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zxl.demo.common.utils.JwtUtil;
-import com.zxl.demo.common.utils.PasswordHash;
+import com.zxl.demo.common.BaseController;
+import com.zxl.demo.common.exception.CustomException;
+import com.zxl.demo.common.utils.R;
 import com.zxl.demo.dto.UserDto;
 import com.zxl.demo.entity.SysUser;
-import com.zxl.demo.common.exception.CustomException;
-import com.zxl.demo.service.ISysUserRoleService;
 import com.zxl.demo.service.ISysUserService;
-import com.zxl.demo.common.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import com.zxl.demo.common.BaseController;
-
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 /**
  * <p>
@@ -32,7 +24,7 @@ import java.security.spec.InvalidKeySpecException;
  * @since 2019-03-01
  */
 
-@Api(tags = "用户", value = "用户管理", description = "用户管理")
+@Api(tags = "1.1", value = "用户管理", description = "用户管理")
 @RestController
 @RequestMapping("user")
 @AllArgsConstructor
@@ -40,11 +32,6 @@ public class SysUserController extends BaseController {
 
     private final ISysUserService sysUserService;
 
-    @ApiOperation(value = "登陆")
-    @PostMapping("/login")
-    public R login(@RequestParam String username, @RequestParam String password) {
-        return sysUserService.login(username, password);
-    }
 
     @ApiOperation(value = "注册")
     @PostMapping("/")

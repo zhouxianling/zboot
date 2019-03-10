@@ -24,7 +24,7 @@ import com.zxl.demo.common.BaseController;
  * @author zxl
  * @since 2019-03-07
  */
-@Api(tags = "菜单", value = "菜单管理", description = "菜单管理")
+@Api(tags = "1.3", value = "菜单管理", description = "菜单管理")
 @RestController
 @RequestMapping("api/menu")
 @AllArgsConstructor
@@ -45,6 +45,12 @@ public class SysMenuController extends BaseController {
         return sysMenuService.updateMenu(menuDto);
     }
 
+
+    @ApiOperation(value = "当前用户的树形菜单")
+    @GetMapping("tree/{userId}")
+    public R getUserTree(@PathVariable Integer userId) {
+        return new R<>(sysMenuService.findMenuByUserId(userId));
+    }
 
     @ApiOperation(value = "通过ID查询菜单的详细信息")
     @GetMapping("/{id}")
@@ -74,5 +80,6 @@ public class SysMenuController extends BaseController {
     public R getTree() {
         return new R<>(TreeUtil.buildMenuTree(sysMenuService.list(Wrappers.emptyWrapper()), 0));
     }
+
 
 }

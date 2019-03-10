@@ -21,14 +21,6 @@ import java.util.List;
  */
 public interface ISysUserService extends IService<SysUser> {
 
-    /**
-     * 登录
-     *
-     * @param username
-     * @param password
-     * @return
-     */
-    R login(String username, String password);
 
 
     /**
@@ -92,12 +84,6 @@ public interface ISysUserService extends IService<SysUser> {
     List<SysUser> listAncestorUsers(String username);
 
 
-    /**
-     * 通过用户ID 查询他的菜单
-     *
-     * @param id 用户ID
-     * @return 菜单集
-     */
-    List<MenuDto> findMenuByUserId(Integer id);
+
 
 }

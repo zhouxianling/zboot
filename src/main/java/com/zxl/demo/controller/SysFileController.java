@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author zxl
  * @since 2019-03-05
  */
-@Api(tags = "文件", value = "文件管理", description = "文件管理")
+@Api(tags = "1.4", value = "文件管理", description = "文件管理")
 @RestController
 @RequestMapping("api/file")
 @AllArgsConstructor

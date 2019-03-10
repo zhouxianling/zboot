@@ -12,9 +12,18 @@ import java.util.List;
 public class UserDto extends SysUser {
 
     /**
+     * token 信息
+     */
+    private String token;
+
+    /**
      * 角色ID
      */
     private List<RoleDto> roles;
 
+    /**
+     * 菜单id
+     */
+    private List<MenuTree> menus;
 
 }

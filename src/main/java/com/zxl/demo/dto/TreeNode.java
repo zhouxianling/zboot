@@ -2,6 +2,7 @@ package com.zxl.demo.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @since 2019/3/6
  */
 @Data
-public class TreeNode {
+public class TreeNode implements Serializable {
     protected int id;
     protected int parentId;
 

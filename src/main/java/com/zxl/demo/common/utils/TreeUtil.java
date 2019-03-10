@@ -1,5 +1,6 @@
 package com.zxl.demo.common.utils;
 
+import com.zxl.demo.dto.MenuDto;
 import com.zxl.demo.dto.MenuTree;
 import com.zxl.demo.dto.TreeNode;
 import com.zxl.demo.entity.SysMenu;
@@ -49,8 +50,9 @@ public class TreeUtil {
      * @param treeNodes
      * @return
      */
-    public <T extends TreeNode> List<T> buildByRecursive(List<T> treeNodes, int root) {
-        List<T> trees = new ArrayList<T>();
+    private <T extends TreeNode> List<T> buildByRecursive(List<T> treeNodes, int root) {
+        List<T> trees = new ArrayList<>();
+
         for (T treeNode : treeNodes) {
             if (root == treeNode.getParentId()) {
                 trees.add(findChildren(treeNode, treeNodes));
@@ -58,6 +60,7 @@ public class TreeUtil {
         }
         return trees;
     }
+
 
     /**
      * 递归查找子节点
@@ -94,13 +97,32 @@ public class TreeUtil {
             node.setName(menu.getName());
             node.setPath(menu.getPath());
             node.setPermission(menu.getPermission());
-            node.setName(menu.getName());
             node.setComponent(menu.getComponent());
             node.setIcon(menu.getIcon());
             node.setKeepAlive(menu.getKeepAlive());
+            node.setName(menu.getName());
             trees.add(node);
         }
         return TreeUtil.build(trees, root);
+    }
+
+    public List<MenuTree> buildMenuDtoTree(List<MenuDto> menuDtoList, int root) {
+        List<MenuTree> menuTrees = new ArrayList<>();
+        MenuTree menuTree;
+        for (MenuDto menuDto : menuDtoList) {
+            menuTree = new MenuTree();
+            menuTree.setParentId(menuDto.getParentId());
+            menuTree.setId(menuDto.getId());
+            menuTree.setName(menuDto.getName());
+            menuTree.setPath(menuDto.getPath());
+            menuTree.setPermission(menuDto.getPermission());
+            menuTree.setComponent(menuDto.getComponent());
+            menuTree.setIcon(menuDto.getIcon());
+            menuTree.setKeepAlive(menuDto.getKeepAlive());
+            menuTree.setName(menuDto.getName());
+            menuTrees.add(menuTree);
+        }
+        return TreeUtil.build(menuTrees, root);
     }
 
 }
