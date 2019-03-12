@@ -35,7 +35,7 @@ spring:
   #swagger的相关配置
   swagger:
     # 扫描的包路径,默认扫描所有
-    base-package: com.zxl.demo.controller
+    base-package: com.zxl.sb.controller
     # 默认为 true
     enabled: true
     description: 这是一个很牛逼的接口管理
