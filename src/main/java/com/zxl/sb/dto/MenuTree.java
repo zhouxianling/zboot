@@ -21,4 +21,6 @@ public class MenuTree extends TreeNode {
     private Integer sort;
     private String keepAlive;
     private String type;
+
+
 }

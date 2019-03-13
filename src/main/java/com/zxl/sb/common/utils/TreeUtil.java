@@ -32,11 +32,13 @@ public class TreeUtil {
             if (root == treeNode.getParentId()) {
                 trees.add(treeNode);
             }
+
             for (T it : treeNodes) {
                 if (it.getParentId() == treeNode.getId()) {
                     if (treeNode.getChildren() == null) {
                         treeNode.setChildren(new ArrayList<>());
                     }
+
                     treeNode.add(it);
                 }
             }
@@ -120,6 +122,7 @@ public class TreeUtil {
             menuTree.setIcon(menuDto.getIcon());
             menuTree.setKeepAlive(menuDto.getKeepAlive());
             menuTree.setName(menuDto.getName());
+            menuTree.setSort(menuDto.getSort());
             menuTrees.add(menuTree);
         }
         return TreeUtil.build(menuTrees, root);

@@ -17,6 +17,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -49,7 +51,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public List<MenuTree> findMenuByUserId(Integer userId) {
-        return TreeUtil.buildMenuDtoTree(baseMapper.findMenuByUserId(userId), 0);
+        List<MenuTree> menuTrees = TreeUtil.buildMenuDtoTree(baseMapper.findMenuByUserId(userId), 0);
+        menuTrees.sort(Comparator.comparing(MenuTree::getSort));
+        return menuTrees;
     }
 
     @Override
