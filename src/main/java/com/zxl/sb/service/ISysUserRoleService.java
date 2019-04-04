@@ -20,4 +20,13 @@ public interface ISysUserRoleService extends IService<SysUserRole> {
      * @return
      */
     Boolean deleteByUserId(Integer userId);
+
+    /**
+     * 根据角色ID删除该角色和用户绑定的关系
+     *
+     * @param roleId
+     * @return
+     */
+    Boolean deleteByRoleId(Integer roleId);
+
 }

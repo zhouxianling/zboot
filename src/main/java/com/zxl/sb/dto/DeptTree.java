@@ -15,4 +15,8 @@ import lombok.EqualsAndHashCode;
 @Data
 public class DeptTree extends TreeNode {
     private String name;
+
+    //前端用 label就是名称  value就是id
+    private String label;
+    private String value;
 }

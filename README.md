@@ -1,5 +1,5 @@
-# springboot-mybatis-plus
-springboot集成mybatis-plus
+# zboot
+
 
 1. 用户、菜单、角色、部门，等基础功能实现。
 2. 加入了jwt权限安全认证。

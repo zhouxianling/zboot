@@ -1,5 +1,6 @@
 package com.zxl.sb.service.impl;
 
+import com.zxl.sb.common.exception.CustomException;
 import com.zxl.sb.common.utils.JwtUtil;
 import com.zxl.sb.common.utils.PasswordHash;
 import com.zxl.sb.common.utils.R;
@@ -37,7 +38,7 @@ public class LoginServiceImpl implements ILoginService {
     public R login(String username, String password) {
         UserDto userDto = sysUserService.findByUsername(username);
         if (userDto == null) {
-            return new R<>(400, "用户不存在.");
+            throw new CustomException(400, "用户不存在.");
         } else {
             try {
                 if (PasswordHash.validatePassword(password, userDto.getPassword())) {
@@ -58,6 +59,6 @@ public class LoginServiceImpl implements ILoginService {
                 e.printStackTrace();
             }
         }
-        return new R<>(400, "登录失败.");
+        return null;
     }
 }

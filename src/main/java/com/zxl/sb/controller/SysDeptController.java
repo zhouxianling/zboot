@@ -61,7 +61,7 @@ public class SysDeptController extends BaseController {
             , @RequestParam(required = false) String name) {
         QueryWrapper<SysDept> queryWrapper = new QueryWrapper<>();
         if (name != null) {
-            queryWrapper.like("name", "%" + name + "%");
+            queryWrapper.like("name", name);
         }
         return new R<>(sysDeptService.page(new Page<>(page, size), queryWrapper));
     }

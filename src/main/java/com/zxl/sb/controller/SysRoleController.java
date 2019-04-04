@@ -61,7 +61,7 @@ public class SysRoleController extends BaseController {
     }
 
 
-    @ApiOperation(value = "删除菜单")
+    @ApiOperation(value = "删除角色")
     @DeleteMapping("/{id}")
     public R removeById(@PathVariable Integer id) {
         return new R<>(sysRoleService.removeById(id));

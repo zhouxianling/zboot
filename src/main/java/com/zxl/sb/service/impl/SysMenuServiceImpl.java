@@ -1,6 +1,7 @@
 package com.zxl.sb.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zxl.sb.common.CommonConstants;
 import com.zxl.sb.common.utils.TreeUtil;
@@ -39,6 +40,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public R saveMenu(MenuDto menuDto) {
         SysMenu sysMenu = new SysMenu();
         BeanUtils.copyProperties(menuDto, sysMenu);
+        
         return new R<>(this.save(sysMenu));
     }
 

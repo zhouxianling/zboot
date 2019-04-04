@@ -103,6 +103,11 @@ public class TreeUtil {
             node.setIcon(menu.getIcon());
             node.setKeepAlive(menu.getKeepAlive());
             node.setName(menu.getName());
+            node.setCreateTime(menu.getCreateTime());
+            node.setUpdateTime(menu.getUpdateTime());
+            node.setSort(menu.getSort());
+            node.setLabel(menu.getName());
+            node.setValue(menu.getId() + "");
             trees.add(node);
         }
         return TreeUtil.build(trees, root);
@@ -123,6 +128,7 @@ public class TreeUtil {
             menuTree.setKeepAlive(menuDto.getKeepAlive());
             menuTree.setName(menuDto.getName());
             menuTree.setSort(menuDto.getSort());
+            menuTree.setValue(menuDto.getId() + "");
             menuTrees.add(menuTree);
         }
         return TreeUtil.build(menuTrees, root);
