@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements ISysRoleMenuService {
 
     @Override
-    public Boolean saveRoleMenus(String role, Integer roleId, String menuIds) {
+    public Boolean saveRoleMenus( Integer roleId, String menuIds) {
         this.remove(Wrappers.<SysRoleMenu>query().lambda()
                 .eq(SysRoleMenu::getRoleId, roleId));
 

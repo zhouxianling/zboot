@@ -81,9 +81,10 @@ public class SysRoleController extends BaseController {
      */
     @ApiOperation("更新角色菜单")
     @PutMapping("/menu")
-    public R saveRoleMenus(Integer roleId, @RequestParam(value = "menuIds", required = false) String menuIds) {
-        SysRole sysRole = sysRoleService.getById(roleId);
-        return new R<>(sysRoleMenuService.saveRoleMenus(sysRole.getRoleCode(), roleId, menuIds));
+    public R saveRoleMenus(Integer roleId
+            , @RequestParam(value = "menuIds"
+            , required = false) String menuIds) {
+        return new R<>(sysRoleMenuService.saveRoleMenus(roleId, menuIds));
     }
 
 

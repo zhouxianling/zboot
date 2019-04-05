@@ -44,11 +44,18 @@ public class SysUserController extends BaseController {
     @GetMapping("/page")
     public R page(@RequestParam(defaultValue = "0") int page
             , @RequestParam(defaultValue = "10") int size
-            , @RequestParam(required = false) String username) {
+            , @RequestParam(required = false) String username
+            , @RequestParam(required = false) String deptId) {
+
+
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         if (StrUtil.isNotBlank(username)) {
             queryWrapper.like("username", username);
         }
+        if (StrUtil.isNotBlank(deptId)) {
+            queryWrapper.like("dept_id", deptId);
+        }
+
         return new R<>(sysUserService.page(new Page<>(page, size), queryWrapper));
     }
 

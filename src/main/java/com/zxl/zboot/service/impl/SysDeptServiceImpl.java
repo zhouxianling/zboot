@@ -47,12 +47,13 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
             //TODO 如果父级改变，更新部门关系
             SysDept oldDept = this.getById(deptDto.getId());
             if (!oldDept.getParentId().equals(sysDept.getParentId())) {
-                sysDeptRelationService.insertDeptRelation(sysDept);
+                sysDeptRelationService.deleteAllDeptRelation(sysDept.getId());
             }
+        } else {
+            //TODO 插入部门关系
+            sysDeptRelationService.insertDeptRelation(sysDept);
         }
         this.saveOrUpdate(sysDept);
-        //TODO 插入部门关系
-        sysDeptRelationService.insertDeptRelation(sysDept);
         return new R<>(Boolean.TRUE);
     }
 

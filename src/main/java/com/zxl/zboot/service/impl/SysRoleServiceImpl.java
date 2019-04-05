@@ -3,6 +3,7 @@ package com.zxl.zboot.service.impl;
 import com.zxl.zboot.dto.RoleDto;
 import com.zxl.zboot.entity.SysRole;
 import com.zxl.zboot.mapper.SysRoleMapper;
+import com.zxl.zboot.service.ISysRoleMenuService;
 import com.zxl.zboot.service.ISysRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zxl.zboot.common.utils.R;
@@ -27,12 +28,15 @@ import java.util.List;
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements ISysRoleService {
 
     private final ISysUserRoleService sysUserRoleService;
+    private final ISysRoleMenuService sysRoleMenuService;
 
     @Override
     public R saveOrUpdateRole(RoleDto roleDto) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(roleDto, sysRole);
-        return new R<>(this.saveOrUpdate(sysRole));
+        this.saveOrUpdate(sysRole);
+        sysRoleMenuService.saveRoleMenus(sysRole.getId(), roleDto.getMenuIds());
+        return new R<>(sysRole);
     }
 
 

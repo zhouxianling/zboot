@@ -27,4 +27,9 @@ public class RoleDto implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date updateTime;
 
+    /**
+     * 逗号拼接一推菜单
+     */
+    private String menuIds;
+
 }
