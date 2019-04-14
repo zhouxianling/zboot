@@ -72,6 +72,6 @@ npm run build --report
 
 
 ### 结尾
-[zboot项目地址](https://github.com/zhouxianling/zboot)
-[zboot-ui项目地址](https://github.com/zhouxianling/zboot-ui)
+服务端地址[zboot项目地址](https://github.com/zhouxianling/zboot)
+前端地址[zboot-ui项目地址](https://github.com/zhouxianling/zboot-ui)
 有不足的地方欢迎大家留言。
