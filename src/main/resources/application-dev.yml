@@ -11,9 +11,9 @@ spring:
       filters: stat
       driver-class-name: com.mysql.jdbc.Driver
       #基本属性
-      url: jdbc:mysql://127.0.0.1:3306/sbm_table?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+      url: jdbc:mysql://148.70.237.161:3306/zboot?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
       username: root
-      password: root
+      password: 123456
       #配置初始化大小/最小/最大
       initial-size: 1
       min-idle: 1
@@ -53,7 +53,7 @@ spring:
 
   #  redis相关配置
   redis:
-    host: localhost
+    host: 148.70.237.161
     port: 6379
     #根据需要
     password:
@@ -92,3 +92,4 @@ mybatis-plus:
 
 #上传文件地址
 file-dir: /E:/file/
+#file-dir:  /home/file
