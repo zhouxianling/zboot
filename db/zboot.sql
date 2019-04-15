@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : 我的腾讯云
  Source Server Type    : MySQL
- Source Server Version : 80013
- Source Host           : localhost:3306
- Source Schema         : sbm_table
+ Source Server Version : 50718
+ Source Host           : 148.70.237.161:3306
+ Source Schema         : zboot
 
  Target Server Type    : MySQL
- Target Server Version : 80013
+ Target Server Version : 50718
  File Encoding         : 65001
 
- Date: 15/04/2019 09:32:55
+ Date: 16/04/2019 02:05:33
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `sys_dept`  (
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '是否删除  -1：已删除  0：正常',
   `parent_id` int(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门管理' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dept
@@ -109,7 +109,7 @@ CREATE TABLE `sys_dict`  (
   INDEX `sys_dict_value`(`value`) USING BTREE,
   INDEX `sys_dict_label`(`label`) USING BTREE,
   INDEX `sys_dict_del_flag`(`del_flag`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict
@@ -138,7 +138,7 @@ CREATE TABLE `sys_file`  (
   `volume` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件大小',
   `update_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1045 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1046 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_file
@@ -170,7 +170,7 @@ CREATE TABLE `sys_log`  (
   INDEX `sys_log_request_uri`(`request_uri`) USING BTREE,
   INDEX `sys_log_type`(`type`) USING BTREE,
   INDEX `sys_log_create_date`(`create_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log
@@ -225,16 +225,12 @@ CREATE TABLE `sys_role`  (
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `role_idx1_role_code`(`role_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '系统角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '系统角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES (12, '\r\n超级管理员', 'superAdmin', '6666', '2019-03-07 07:33:41', '2019-03-15 11:43:24', '0');
-INSERT INTO `sys_role` VALUES (26, '测试', 'test', '测试角色', '2019-04-05 16:26:01', NULL, '0');
-INSERT INTO `sys_role` VALUES (27, '周', 'zhou', '超级管理员', '2019-04-05 16:32:52', NULL, '0');
-INSERT INTO `sys_role` VALUES (28, '李', 'Li', '超级管理员', '2019-04-05 16:34:05', NULL, '0');
-INSERT INTO `sys_role` VALUES (29, '管理员', 'admins', '管理员', '2019-04-05 16:35:53', NULL, '0');
+INSERT INTO `sys_role` VALUES (12, '\r\n超级管理员', 'admin', '最高级别用户', '2019-03-07 07:33:41', '2019-04-15 17:07:41', '0');
 
 -- ----------------------------
 -- Table structure for sys_role_dept
@@ -267,16 +263,6 @@ INSERT INTO `sys_role_menu` VALUES (12, 5);
 INSERT INTO `sys_role_menu` VALUES (12, 6);
 INSERT INTO `sys_role_menu` VALUES (12, 7);
 INSERT INTO `sys_role_menu` VALUES (12, 8);
-INSERT INTO `sys_role_menu` VALUES (29, 1);
-INSERT INTO `sys_role_menu` VALUES (29, 2);
-INSERT INTO `sys_role_menu` VALUES (29, 4);
-INSERT INTO `sys_role_menu` VALUES (29, 5);
-INSERT INTO `sys_role_menu` VALUES (29, 6);
-INSERT INTO `sys_role_menu` VALUES (29, 7);
-INSERT INTO `sys_role_menu` VALUES (29, 8);
-INSERT INTO `sys_role_menu` VALUES (29, 32);
-INSERT INTO `sys_role_menu` VALUES (29, 33);
-INSERT INTO `sys_role_menu` VALUES (29, 34);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -297,12 +283,12 @@ CREATE TABLE `sys_user`  (
   `real_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '真实姓名',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_idx1_username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (4, 'admin', '1000:fe9fcb330ce3d55be81b91821341a3c03ccc406d311522a8:ff9a9b03bbb8d43949e944515bf3ce455f847141b27934f1', NULL, '10086', NULL, 1, '2019-03-07 15:24:29', '2019-04-05 20:15:26', '0', '0', '蔡二');
+INSERT INTO `sys_user` VALUES (1, 'admin', '1000:fe9fcb330ce3d55be81b91821341a3c03ccc406d311522a8:ff9a9b03bbb8d43949e944515bf3ce455f847141b27934f1', NULL, '10086', NULL, 1, '2019-03-07 15:24:29', '2019-04-15 17:07:56', '0', '0', '蔡二');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -317,6 +303,6 @@ CREATE TABLE `sys_user_role`  (
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
-INSERT INTO `sys_user_role` VALUES (4, 29);
+INSERT INTO `sys_user_role` VALUES (1, 12);
 
 SET FOREIGN_KEY_CHECKS = 1;
