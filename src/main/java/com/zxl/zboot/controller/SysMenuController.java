@@ -53,6 +53,20 @@ public class SysMenuController extends BaseController {
     }
 
 
+
+    @ApiOperation("查询角色分配的菜单")
+    @GetMapping("/menus/{roleId}")
+    public R findMenuByRoleId(@PathVariable Integer roleId) {
+        return new R<>(sysMenuService.findMenuByRoleId(roleId));
+    }
+
+    @ApiOperation("查询角色分配的菜单ID集")
+    @GetMapping("/menuIds/{roleId}")
+    public R findMenuIdsByRoleId(@PathVariable Integer roleId) {
+        return new R<>(sysMenuService.findMenuIdsByRoleId(roleId));
+    }
+
+
     @ApiOperation(value = "删除菜单")
     @DeleteMapping("/{id}")
     public R removeById(@PathVariable Integer id) {

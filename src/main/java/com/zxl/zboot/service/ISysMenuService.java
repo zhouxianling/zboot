@@ -5,6 +5,7 @@ import com.zxl.zboot.dto.MenuTree;
 import com.zxl.zboot.entity.SysMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zxl.zboot.common.utils.R;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -35,7 +36,6 @@ public interface ISysMenuService extends IService<SysMenu> {
     R saveOrUpdateMenu(MenuDto menuDto);
 
 
-
     /**
      * 通过用户ID 查询他的菜单
      *
@@ -43,4 +43,21 @@ public interface ISysMenuService extends IService<SysMenu> {
      * @return 菜单集
      */
     List<MenuTree> findMenuByUserId(Integer userId);
+
+
+    /**
+     * 通过角色ID 查询他的菜单
+     *
+     * @param roleId 角色ID
+     * @return 菜单集
+     */
+    List<MenuTree> findMenuByRoleId(Integer roleId);
+
+    /**
+     * TODO 通过角色 查询他的菜单ids
+     *
+     * @param roleId 角色ID
+     * @return 菜单ID集合
+     */
+    List<Integer> findMenuIdsByRoleId(Integer roleId);
 }

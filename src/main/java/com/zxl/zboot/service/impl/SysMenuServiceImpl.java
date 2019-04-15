@@ -50,6 +50,18 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     }
 
     @Override
+    public List<MenuTree> findMenuByRoleId(Integer roleId) {
+        List<MenuTree> menuTrees = TreeUtil.buildMenuDtoTree(baseMapper.findMenuByRoleId(roleId), 0);
+        menuTrees.sort(Comparator.comparing(MenuTree::getSort));
+        return menuTrees;
+    }
+
+    @Override
+    public List<Integer> findMenuIdsByRoleId(Integer roleId) {
+        return baseMapper.findMenuIdsByRoleId(roleId);
+    }
+
+    @Override
     public R removeMenuById(Integer id) {
         // 查询父节点为当前节点的节点
         List<SysMenu> menuList = this.list(Wrappers.<SysMenu>query()

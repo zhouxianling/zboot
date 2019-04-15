@@ -72,6 +72,8 @@ public class SysRoleController extends BaseController {
         return new R<>(sysRoleService.page(new Page<>(page, size), queryWrapper));
     }
 
+
+
     /**
      * 更新角色菜单
      *
@@ -80,7 +82,7 @@ public class SysRoleController extends BaseController {
      * @return success、false
      */
     @ApiOperation("更新角色菜单")
-    @PutMapping("/menu")
+    @GetMapping("/menu")
     public R saveRoleMenus(Integer roleId
             , @RequestParam(value = "menuIds"
             , required = false) String menuIds) {
