@@ -1,6 +1,6 @@
 package com.zxl.zboot.common.utils;
 
-import com.zxl.zboot.common.CommonConstants;
+import com.zxl.zboot.common.Constants;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -24,7 +24,7 @@ public class R<T> implements Serializable {
 
     @Getter
     @Setter
-    private int code = CommonConstants.SUCCESS;
+    private int code = Constants.SUCCESS;
 
     @Getter
     @Setter
@@ -53,6 +53,6 @@ public class R<T> implements Serializable {
     public R(Throwable e) {
         super();
         this.msg = e.getMessage();
-        this.code = CommonConstants.FAIL;
+        this.code = Constants.FAIL;
     }
 }

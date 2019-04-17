@@ -2,7 +2,7 @@ package com.zxl.zboot.common.utils;
 
 import com.zxl.zboot.common.exception.CustomException;
 import com.zxl.zboot.common.filter.CustomHttpServletRequest;
-import com.zxl.zboot.entity.SysUser;
+import com.zxl.zboot.sys.entity.SysUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;

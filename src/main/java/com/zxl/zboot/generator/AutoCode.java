@@ -19,9 +19,11 @@ import java.util.Scanner;
  */
 public class AutoCode {
 
-    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/sbm_table?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC";
+
+
+    private static final String DB_URL = "jdbc:mysql://148.70.237.161:3306/zboot?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC";
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "root";
+    private static final String DB_PASSWORD = "123456";
     private static final String[] SUPER_ENTITY_COLUMNS = {"id", "create_time", "update_time", "del_flag"};
 
 
@@ -30,17 +32,18 @@ public class AutoCode {
      * 读取控制台内容
      * </p>
      */
-    private static String scanner() {
+    public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(("请输入" + "表名" + "："));
+        System.out.println("请输入" + tip + "：");
         if (scanner.hasNext()) {
             String ipt = scanner.next();
             if (StringUtils.isNotEmpty(ipt)) {
                 return ipt;
             }
         }
-        throw new MybatisPlusException("请输入正确的" + "表名" + "！");
+        throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
+
 
     public static void main(String[] args) {
         // 代码生成器
@@ -64,8 +67,7 @@ public class AutoCode {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-//        pc.setModuleName(scanner("模块名"));
-//        pc.setModuleName("module");
+        pc.setModuleName(scanner("模块名"));
         pc.setParent("com.zxl.zboot");
         mpg.setPackageInfo(pc);
 
@@ -85,19 +87,12 @@ public class AutoCode {
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
         // 自定义配置会被优先输出
-       /* focList.add(new FileOutConfig(templatePath) {
+        focList.add(new FileOutConfig(templatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名
                 return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
-            }
-        });*/
-        focList.add(new FileOutConfig(templatePath) {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输出文件名
-                return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
 
@@ -124,7 +119,7 @@ public class AutoCode {
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         strategy.setSuperControllerClass("com.zxl.zboot.common.BaseController");
-        strategy.setInclude(scanner());
+        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
 
         strategy.setSuperEntityColumns(SUPER_ENTITY_COLUMNS);
 

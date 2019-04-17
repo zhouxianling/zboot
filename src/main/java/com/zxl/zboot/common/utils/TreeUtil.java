@@ -1,9 +1,9 @@
 package com.zxl.zboot.common.utils;
 
-import com.zxl.zboot.dto.MenuDto;
-import com.zxl.zboot.dto.MenuTree;
-import com.zxl.zboot.dto.TreeNode;
-import com.zxl.zboot.entity.SysMenu;
+import com.zxl.zboot.sys.dto.MenuDto;
+import com.zxl.zboot.sys.dto.MenuTree;
+import com.zxl.zboot.sys.dto.TreeNode;
+import com.zxl.zboot.sys.entity.SysMenu;
 import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;

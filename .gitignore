@@ -24,3 +24,4 @@
 /.nb-gradle/
 /build/
 application-prod.yml
+application-dev.yml

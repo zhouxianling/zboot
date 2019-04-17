@@ -2,8 +2,8 @@ package com.zxl.zboot.common.filter;
 
 import cn.hutool.core.util.StrUtil;
 import com.zxl.zboot.common.utils.JwtUtil;
-import com.zxl.zboot.entity.SysUser;
-import com.zxl.zboot.service.ISysUserService;
+import com.zxl.zboot.sys.entity.SysUser;
+import com.zxl.zboot.sys.service.ISysUserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;

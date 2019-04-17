@@ -20,11 +20,12 @@
         <mybatis.plus.generator.version>3.1.0</mybatis.plus.generator.version>
         <freemarker.version>2.3.28</freemarker.version>
         <alibaba.druid.version>1.1.9</alibaba.druid.version>
-        <swagger.version>2.1.5-RELEASE</swagger.version>
         <hutool.version>4.5.0</hutool.version>
         <fastjson.version>1.2.56</fastjson.version>
         <jjwt.version>0.9.0</jjwt.version>
         <skipTests>true</skipTests>
+        <swagger.bootstrap.version>1.9.2</swagger.bootstrap.version>
+        <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <dependencies>
@@ -89,9 +90,15 @@
 
         <!--Swagger在线调试-->
         <dependency>
-            <groupId>com.battcn</groupId>
-            <artifactId>swagger-spring-boot-starter</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
             <version>${swagger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>${swagger.bootstrap.version}</version>
         </dependency>
 
         <!--redis-->

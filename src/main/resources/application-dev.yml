@@ -32,24 +32,6 @@ spring:
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
 
-  #swagger的相关配置
-  swagger:
-    # 扫描的包路径,默认扫描所有
-    base-package: com.zxl.zboot.controller
-    # 默认为 true
-    enabled: true
-    description: 这是一个很牛逼的接口管理
-    contact:
-      name: xianLing.zhou
-      email: 1079112877@qq.com
-    version: v1.0.0
-    #全局参数,比如Token之类的验证信息可以全局话配置
-    global-operation-parameters:
-    - description: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1NTU1NzUzMjEsInVzZXJuYW1lIjoienhsIn0.56K9pbg-TaxkPBlSoNxMLN1sMdvhok7RJ4Rk1_K9SHJkI4Ma7j026KLkTMDAvKS6qCt2Yips9AucCt5JAv7gTg'
-      modelRef: 'string'
-      name: 'Authorization'
-      parameter-type: 'header'
-      required: false
 
   #  redis相关配置
   redis:
