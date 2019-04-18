@@ -2,7 +2,6 @@
 
 > **zboot项目的初衷是用于快速开发各种小型的系统的，zboot基于springboot+mybatis架构实现的。集成了jwt安全验证，swagger-ui接口调试，Redis数据库等。而且还配套zboot-ui后台管理前端，zboot-ui是基于element框架开发的。**
 
-[点击在线体验](http://148.70.237.161:8085/index.html)
 
 ### 服务端zboot项目介绍
 > 基于springboot+mybatis+mysql搭建的，
