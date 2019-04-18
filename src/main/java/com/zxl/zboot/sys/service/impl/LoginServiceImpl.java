@@ -47,13 +47,9 @@ public class LoginServiceImpl implements ILoginService {
                 if (PasswordHash.validatePassword(password, userDto.getPassword())) {
                     String token = JwtUtil.generateToken(username);
                     redisTemplate.opsForValue().set(userDto.getUsername(), userDto);
-
-                    List<RoleDto> roles = sysRoleService.findRoleByUserId(userDto.getId());
-                    userDto.setRoles(roles);
                     userDto.setToken(token);
                     List<MenuTree> menuTrees = sysMenuService.findMenuByUserId(userDto.getId());
                     userDto.setMenus(menuTrees);
-
                     return new R<>(userDto);
                 } else {
                     return new R<>(400, "参数错误.");

@@ -3,12 +3,14 @@ package com.zxl.zboot.sys.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zxl.zboot.common.BaseController;
 import com.zxl.zboot.common.exception.CustomException;
 import com.zxl.zboot.common.utils.R;
 import com.zxl.zboot.sys.dto.UserDto;
 import com.zxl.zboot.sys.entity.SysUser;
+import com.zxl.zboot.sys.service.ISysRoleService;
 import com.zxl.zboot.sys.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,7 +33,7 @@ import org.springframework.web.bind.annotation.*;
 public class SysUserController extends BaseController {
 
     private final ISysUserService sysUserService;
-
+    private final ISysRoleService sysRoleService;
 
     @ApiOperation(value = "注册")
     @PostMapping("/")
@@ -55,8 +57,12 @@ public class SysUserController extends BaseController {
         if (StrUtil.isNotBlank(deptId)) {
             queryWrapper.like("dept_id", deptId);
         }
-
-        return new R<>(sysUserService.page(new Page<>(page, size), queryWrapper));
+        IPage<SysUser> sysUserIPage = sysUserService.page(new Page<>(page, size), queryWrapper);
+        for (SysUser sysUser : sysUserIPage.getRecords()) {
+            if (sysUser.getRoleId() != null)
+                sysUser.setRoleName(sysRoleService.getById(sysUser.getRoleId()).getRoleName());
+        }
+        return new R<>(sysUserIPage);
     }
 
     @ApiOperation("测试")

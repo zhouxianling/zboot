@@ -7,7 +7,6 @@ import com.zxl.zboot.sys.service.ISysRoleMenuService;
 import com.zxl.zboot.sys.service.ISysRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zxl.zboot.common.utils.R;
-import com.zxl.zboot.sys.service.ISysUserRoleService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,6 @@ import java.util.List;
 @AllArgsConstructor
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements ISysRoleService {
 
-    private final ISysUserRoleService sysUserRoleService;
     private final ISysRoleMenuService sysRoleMenuService;
 
     @Override
@@ -43,7 +41,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public boolean removeById(Serializable id) {
         super.removeById(id);
-        sysUserRoleService.deleteByRoleId((Integer) id);
         return Boolean.TRUE;
     }
 

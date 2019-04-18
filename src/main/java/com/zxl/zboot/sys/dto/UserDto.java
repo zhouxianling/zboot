@@ -16,11 +16,6 @@ public class UserDto extends SysUser {
     private String token;
 
     /**
-     * 角色ID
-     */
-    private List<RoleDto> roles;
-
-    /**
      * 菜单id
      */
     private List<MenuTree> menus;

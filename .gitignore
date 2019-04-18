@@ -25,3 +25,4 @@
 /build/
 application-prod.yml
 application-dev.yml
+static\

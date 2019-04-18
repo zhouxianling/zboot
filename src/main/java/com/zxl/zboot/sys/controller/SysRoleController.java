@@ -4,6 +4,7 @@ package com.zxl.zboot.sys.controller;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zxl.zboot.common.exception.CustomException;
 import com.zxl.zboot.sys.dto.RoleDto;
 import com.zxl.zboot.sys.entity.SysRole;
 import com.zxl.zboot.sys.service.ISysRoleMenuService;
@@ -57,6 +58,9 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value = "删除角色")
     @DeleteMapping("/{id}")
     public R removeById(@PathVariable Integer id) {
+        if (id == 1) {
+            throw new CustomException(401, "系统角色不支持删除");
+        }
         return new R<>(sysRoleService.removeById(id));
     }
 
@@ -73,7 +77,6 @@ public class SysRoleController extends BaseController {
     }
 
 
-
     /**
      * 更新角色菜单
      *
@@ -83,9 +86,10 @@ public class SysRoleController extends BaseController {
      */
     @ApiOperation("更新角色菜单")
     @GetMapping("/menu")
-    public R saveRoleMenus(Integer roleId
-            , @RequestParam(value = "menuIds"
-            , required = false) String menuIds) {
+    public R saveRoleMenus(@RequestParam Integer roleId, @RequestParam(required = false) String menuIds) {
+        if (roleId == 1) {
+            throw new CustomException(401, "系统角色不支持修改");
+        }
         return new R<>(sysRoleMenuService.saveRoleMenus(roleId, menuIds));
     }
 

@@ -4,6 +4,7 @@ package com.zxl.zboot.sys.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zxl.zboot.common.exception.CustomException;
 import com.zxl.zboot.sys.dto.MenuDto;
 import com.zxl.zboot.sys.entity.SysMenu;
 import com.zxl.zboot.sys.service.ISysMenuService;
@@ -53,7 +54,6 @@ public class SysMenuController extends BaseController {
     }
 
 
-
     @ApiOperation("查询角色分配的菜单")
     @GetMapping("/menus/{roleId}")
     public R findMenuByRoleId(@PathVariable Integer roleId) {
@@ -70,6 +70,9 @@ public class SysMenuController extends BaseController {
     @ApiOperation(value = "删除菜单")
     @DeleteMapping("/{id}")
     public R removeById(@PathVariable Integer id) {
+        if (id == 4 || id == 5 || id == 6 || id == 7 || id == 8) {
+            throw new CustomException(401, "不支持删除！");
+        }
         return sysMenuService.removeMenuById(id);
     }
 

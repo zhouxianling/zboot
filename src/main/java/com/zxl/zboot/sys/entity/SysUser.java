@@ -60,4 +60,15 @@ public class SysUser extends BaseEntity {
     private String lockFlag;
 
 
+    /**
+     * 角色ID
+     */
+    private Long roleId;
+
+
+    /**
+     * 角色名称
+     */
+    private transient String roleName;
+
 }
